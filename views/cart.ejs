@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css"
+        integrity="sha512-T584yQ/tdRR5QwOpfvDfVQUidzfgc2339Lc8uBDtcp/wYu80d7jwBgAxbyMh0a9YM9F8N3tdErpFI8iaGx6x5g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.min.js"
+        integrity="sha512-UR25UO94eTnCVwjbXozyeVd6ZqpaAE9naiEUBK/A+QDbfSTQFhPGj5lOR6d8tsgbBk84Ggb5A3EkjsOgPRPcKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/bag.css">
+
+
+</head>
+
+<body>
+    <header>
+        <div class="logo_container">
+            <a href="#"><img class="myntra_home" src="/images/myntra_logo.webp" alt="Myntra Home"></a>
+        </div>
+        <nav class="nav_bar">
+            <a href="#">Men</a>
+            <a href="#">Women</a>
+            <a href="#">Kids</a>
+            <a href="#">Home & Living</a>
+            <a href="#">Beauty</a>
+            <a href="#">Studio <sup>New</sup></a>
+        </nav>
+        <div class="search_bar">
+            <span class="material-symbols-outlined search_icon">search</span>
+            <input class="search_input" placeholder="Search for products, brands and more">
+        </div>
+        <div class="action_bar">
+            <div class="action_container">
+                <span class="material-symbols-outlined action_icon">person</span>
+                <a href="/register"><span class="action_name">Profile</span></a>
+            </div>
+
+            <div class="action_container">
+                <span class="material-symbols-outlined action_icon">favorite</span>
+                <span class="action_name">Wishlist</span>
+            </div>
+
+            <a class="action_container" href="pages/bag.html">
+                <span class="material-symbols-outlined action_icon">shopping_bag</span>
+                <span class="action_name">Bag</span>
+                <span class="bag-item-count">
+                    <%=cartProducts.length%>
+                </span>
+            </a>
+        </div>
+    </header>
+    <main>
+        <div class="bag-page">
+            <div>
+
+          
+            <%cartProducts.forEach((cartproduct)=>{%>
+                <div class="bag-item-container">
+                    <div class="item-left-part">
+                        <img class="bag-item-img" src="<%=cartproduct.image%>">
+                    </div>
+                    <div class="item-right-part">
+                        <div class="company">${item.company}</div>
+                        <div class="item-name">
+                            <%=cartproduct.item_name%>
+                        </div>
+                        <div class="price-container">
+                            <span class="current-price">Rs <%=cartproduct.current_price%></span>
+                            <span class="original-price">Rs <%=cartproduct.original_price%></span>
+                            <span class="discount-percentage">(${item.discount_percentage}% OFF)</span>
+                        </div>
+                    </div>
+
+                   <a href="/delete/<%=cartproduct._id%>"><div class="remove-from-cart" >X</div></a> 
+                </div>
+
+                <%})%>
+            </div>
+
+
+                
+
+                    <div class="bag-summary">
+                        <div class="bag-details-container">
+                            <div class="price-header">PRICE DETAILS <%=cartProducts.length%> Items</div>
+                            <div class="price-item">
+                                <span class="price-item-tag">Total MRP</span>
+                                <span class="price-item-value">Rs <%
+                                    let totalpayment=0
+for(let i=0;i<cartProducts.length;i++)
+{
+totalpayment+=cartProducts[i].current_price
+}
+                                    %>
+                            <%=totalpayment%>    </span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-tag">Discount on MRP</span>
+                                <span class="price-item-value priceDetail-base-discount">-Rs ${totaldiscount}</span>
+                            </div>
+                            <div class="price-item">
+                                <span class="price-item-tag">Convenience Fee</span>
+                                <span class="price-item-value">Rs 99</span>
+                            </div>
+                            <hr>
+                            <div class="price-footer">
+                                <span class="price-item-tag">Total Amount</span>
+                                <span class="price-item-value">Rs  <%=totalpayment%> </span>
+                            </div>
+
+                            <button class="btn-place-order">
+                                <div class="css-xjhrni">PLACE ORDER</div>
+                            </button>
+                        </div>
+                    </div>
+
+          
+        </div>
+    </main>
+    <footer>
+        <div class="footer_container">
+            <div class="footer_column">
+                <h3>ONLINE SHOPPING</h3>
+
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Beauty</a>
+                <a href="#">Gift Card</a>
+                <a href="#">Myntra Insider</a>
+            </div>
+
+            <div class="footer_column">
+                <h3>ONLINE SHOPPING</h3>
+
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Beauty</a>
+                <a href="#">Gift Card</a>
+                <a href="#">Myntra Insider</a>
+            </div>
+
+            <div class="footer_column">
+                <h3>ONLINE SHOPPING</h3>
+
+                <a href="#">Men</a>
+                <a href="#">Women</a>
+                <a href="#">Kids</a>
+                <a href="#">Home & Living</a>
+                <a href="#">Beauty</a>
+                <a href="#">Gift Card</a>
+                <a href="#">Myntra Insider</a>
+            </div>
+        </div>
+        <hr>
+
+        <div class="copyright">
+            © 2023 www.myntra.com. All rights reserved.
+        </div>
+    </footer>
+</body>
+
+</html>
